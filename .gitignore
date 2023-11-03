@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+*.mq5
+*.ex5
+.DS_Store
