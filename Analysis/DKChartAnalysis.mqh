@@ -7,7 +7,7 @@
 #property link      "https://kislitsyn.me"
 
 #include <Trade\SymbolInfo.mqh>
-#include <DKStdLib.mqh>
+#include <DKStdLib\Common\DKStdLib.mqh>
 
 enum ENUM_PRICETAG_COMPARE_MODE {
   ENUM_PRICETAG_COMPARE_MODE_PRICE_LT = 10,
@@ -97,8 +97,8 @@ int GetExteremsByZigZag(string aSymbol,
   for(int i = 0; i < count; i++) {
     if(ZigzagBuffer[i] != PLOT_EMPTY_VALUE && ZigzagBuffer[i] != 0.0) {
       CPriceTag *priceTag = new CPriceTag(aSymbol, aPeriod,
-                                          i,
-                                          iTime(aSymbol, aPeriod, i),
+                                          i + start_pos,
+                                          iTime(aSymbol, aPeriod, i + start_pos),
                                           NormalizeDouble(ZigzagBuffer[i], Digits()));
       priceTagArray.Add(priceTag);
     }
