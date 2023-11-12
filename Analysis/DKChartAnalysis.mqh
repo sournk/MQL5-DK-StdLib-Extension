@@ -31,7 +31,7 @@ class CPriceTag : public CObject {
   double                    price;           // Price of a tag
 
   CPriceTag(void) {};
-  CPriceTag(string aSymbol, ENUM_TIMEFRAMES aPeriod, ulong aBarIndex, datetime aDT, double aPrice) {
+  CPriceTag(string aSymbol, ENUM_TIMEFRAMES aPeriod, long aBarIndex, datetime aDT, double aPrice) {
     symbol = aSymbol;
     period = aPeriod;
     barIndex = aBarIndex;
@@ -86,6 +86,10 @@ int GetExteremsByZigZag(string aSymbol,
                         int aBarShiftToDetectEtremes,
                         CArrayObj &priceTagArray,
                         string anIndicatorPath = "Examples\\ZigZag") {
+  
+  CSymbolInfo symbol;
+  symbol.Name(aSymbol);
+  
   priceTagArray.Clear();
   int handle_iCustom = iCustom(aSymbol, aPeriod, anIndicatorPath, aZigZagDepth, aZigZagDeviation, aZigZagBackstep);
   double ZigzagBuffer[];
@@ -99,7 +103,7 @@ int GetExteremsByZigZag(string aSymbol,
       CPriceTag *priceTag = new CPriceTag(aSymbol, aPeriod,
                                           i + start_pos,
                                           iTime(aSymbol, aPeriod, i + start_pos),
-                                          NormalizeDouble(ZigzagBuffer[i], Digits()));
+                                          NormalizeDouble(ZigzagBuffer[i], symbol.Digits()));
       priceTagArray.Add(priceTag);
     }
   }
