@@ -27,16 +27,20 @@ class CPriceTag : public CObject {
   ENUM_TIMEFRAMES           period;          // Which period price tag belongs to
   long                      barIndex;        // Bar index of price tag
   datetime                  dt;              // Datetime of price tag
+  
+  datetime                  updated_dt;      // Datetime when PriceTag was updated last timne
 
   double                    price;           // Price of a tag
 
-  CPriceTag(void) {};
+  CPriceTag(void) {updated_dt = TimeCurrent();};
   CPriceTag(string aSymbol, ENUM_TIMEFRAMES aPeriod, long aBarIndex, datetime aDT, double aPrice) {
     symbol = aSymbol;
     period = aPeriod;
     barIndex = aBarIndex;
     dt = aDT;
     price = aPrice;
+    
+    updated_dt = TimeCurrent();
   };
 
   int                Compare(const CObject *node, const int mode = 0) const {
