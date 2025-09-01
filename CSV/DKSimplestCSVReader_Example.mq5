@@ -27,12 +27,12 @@ void OnStart()
                 Filename);
     
     // Print all columns of the file from 1st line
-    for (int i = 0; i < CSVFile.ColumnCount(); i++) {   
+    for (uint i = 0; i < CSVFile.ColumnCount(); i++) {   
       PrintFormat("  Column Index=#%d; Name=%s", i, CSVFile.GetColumn(i));
     }         
                 
     // Print values from all rows
-    for (int i = 0; i < CSVFile.RowCount(); i++) {
+    for (uint i = 0; i < CSVFile.RowCount(); i++) {
       PrintFormat("Row %d: Value by column name: CSVFile.GetValue(i, ""Time"")=%s", i, CSVFile.GetValue(i, "Time")); // Get value from i line by column name
       PrintFormat("Row %d: Value by column index: CSVFile.GetValue(i, 0)=%s", i, CSVFile.GetValue(i, 0));            // Get value from i line by column index
     }    
